@@ -1,20 +1,19 @@
 package com.apache13.elasticsearch;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.apache13.elasticsearch.document.Customer;
+import com.apache13.elasticsearch.repository.PagingAndSortingCustomerRepository;
+
 @SpringBootApplication
 public class DataElasticsearchApplication implements CommandLineRunner {
 
-	private static Logger logger = LoggerFactory.getLogger(DataElasticsearchApplication.class);
-	
 	@Autowired
-	private CustomerService customerService;
-	
+	private PagingAndSortingCustomerRepository repository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(DataElasticsearchApplication.class, args).close();
 	}
@@ -25,11 +24,16 @@ public class DataElasticsearchApplication implements CommandLineRunner {
 		customer.setId(1);
 		customer.setName("Jame");
 		customer.setAge(30);
+
+		System.out.println("save : "+ repository.save(customer));
+		System.out.println("count : " + repository.count());
+		System.out.println("existsById : "+ repository.existsById(1));
+		System.out.println("findById : "+ repository.findById(1).get());
 		
-		customerService.save(customer);	
-		//customerService.findAll().stream().forEach(c->logger.info(c.toString()));
-		//customerService.deleteAll();
-		//customerService.findAll().stream().forEach(c->logger.info(c.toString()));
+		System.out.println("findAll : "+ repository.findAll());
+		
+		repository.deleteAll();
+		// customerService.findAll().stream().forEach(c->logger.info(c.toString()));
 	}
 
 }

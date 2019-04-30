@@ -1,0 +1,14 @@
+version: "3.3"
+services:    
+    elastic:
+        image: elasticsearch:6.7.1
+        ports:
+            - "9200:9200"
+            - "9300:9300"        
+        environment:
+            discovery.type: single-node
+        networks:            
+            - elk-network
+networks:
+    elk-network:
+        driver: bridge    
