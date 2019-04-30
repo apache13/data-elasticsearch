@@ -28,12 +28,9 @@ public class DataElasticsearchApplication implements CommandLineRunner {
 		System.out.println("save : "+ repository.save(customer));
 		System.out.println("count : " + repository.count());
 		System.out.println("existsById : "+ repository.existsById(1));
-		System.out.println("findById : "+ repository.findById(1).get());
-		
-		System.out.println("findAll : "+ repository.findAll());
-		
+		System.out.println("findById : "+ repository.findById(1).get());		
+		System.out.println("findAll : "+ repository.findAll());		
 		repository.deleteAll();
-		// customerService.findAll().stream().forEach(c->logger.info(c.toString()));
 	}
 
 }
