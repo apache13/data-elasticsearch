@@ -6,13 +6,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.apache13.elasticsearch.document.Customer;
-import com.apache13.elasticsearch.repository.PagingAndSortingCustomerRepository;
+import com.apache13.elasticsearch.repository.CustomerRepository;
 
 @SpringBootApplication
 public class DataElasticsearchApplication implements CommandLineRunner {
 
 	@Autowired
-	private PagingAndSortingCustomerRepository repository;
+	private CustomerRepository repository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DataElasticsearchApplication.class, args).close();
